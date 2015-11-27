@@ -27,10 +27,10 @@ private
 
  def full?
    if bikes.length >= capacity
-   return true
- else
-   return false
- end
+     return true
+   else
+     return false
+   end
  end
 
  def empty?
