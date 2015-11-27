@@ -54,6 +54,20 @@ end
     expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 
+  it 'report a broken bike when docking' do
+  bike = Bike.new
+  subject.dock(bike)
+  subject.bikes.last.report_broken_bike
+  expect(subject.bikes.last.working?).to eq false
+  end
+
+  it 'does not release a bike if broken' do
+  bike = Bike.new
+  subject.dock(bike)
+  subject.bikes.last.report_broken_bike
+  expect{subject.release_bike}.to raise_error 'Can not release broken bike'
+  end
+
 
   it { is_expected.to respond_to(:dock).with(1).argument }
 

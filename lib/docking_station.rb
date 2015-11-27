@@ -14,6 +14,7 @@ attr_reader :capacity
 
   def release_bike
    fail 'No bikes available' if empty?
+   fail 'Can not release broken bike' if bikes.last.working? == false
     bikes.pop
   end
 
